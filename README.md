@@ -26,7 +26,7 @@ This data project was a project that I completed as part of my course work at Un
 The following report details my wrangling journey, including successes and failures. 
 
 **Tools** 
-- Excel; 
+- Excel; Vlookup, Filtering, Dealing with N/A values, Pivot Tables, Visualisations
 - MongoDB
 
 
@@ -205,16 +205,11 @@ I posed three questions before my wrangling journey that I hoped to be able to a
 
 
 
+## Conclusion
 
+This analysis was  a University course assignment. I have documented my journey of combining two datasets in different forms into one combined dataset to conduct analysis and answer questions that couldn't have been answered by either dataset alone. 
 
-  
-
-
-
-
-
-
-
+Through these efforts, I have gained valuable insights about the relationship between Olympic Medals and GDP. 
 
 
 
