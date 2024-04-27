@@ -9,7 +9,7 @@
 - [Stage 1: Ask](#Stage-1-Ask)
 - [Stage 2: Prepare](#Stage-2-Prepare)
 - [Stage 3: Process](#Stage-3-Process)
-- [Stage 4/5: Analyse and Share](#Stage4/5-Analyse-and-Share)
+- [Stage 4 and 5: Analyse and Share](#Stage4-and-5-Analyse-and-Share)
 
 
 ## Introduction 
@@ -159,7 +159,7 @@ Now know all my genuine valid N/A values (17,049 of them), I can see that I was 
 - <img width="417" alt="image" src="https://github.com/erin-howard018/Olympic-dataset/assets/167825293/ab9877f3-4c24-4d1c-8282-e259dedae93e">
 
 
-## Stage 4/5: Analyse and Share 
+## Stage 4 and 5: Analyse and Share 
 I posed three questions before my wrangling journey that I hoped to be able to answer with my combined dataset.  
 - As my combined dataset was in Excel format, I used Pivot tables to explore my data and create visualisations to answer my questions.
 - This Excel workbook can be found [here](data/clean/analyse_share_workbook.xlsx)
