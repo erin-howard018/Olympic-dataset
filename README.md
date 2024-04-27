@@ -174,7 +174,7 @@ I posed three questions before my wrangling journey that I hoped to be able to a
 - I decided a Pivot chart would make this data easiest to see, and most importantly, would reveal any trends between average GDP and medal count between countries. I played around with different chart types, dual axis and colours to develop the plot as shown below.
 
 **Share Results**
-<img width="346" alt="image" src="https://github.com/erin-howard018/Olympic-dataset/assets/167825293/46825b46-1b0b-46c7-b4ce-ded5073f1f83">
+- <img width="346" alt="image" src="https://github.com/erin-howard018/Olympic-dataset/assets/167825293/46825b46-1b0b-46c7-b4ce-ded5073f1f83">
 - From this plot, we can see a general trend such that as average GDP for a country decreases/increases, so does its corresponding medal count. We are also able to see specific instances where medal count is a lot higher (yellow peaks) from what we would expect from the trend, like for Cuba and Finland. However, I noticed that there are very few instances with the opposite; where GDP is high and medal count is lower than expected.
 - This reveals important features in the relationship between average GDP and medal count where there is a positive correlation, but with countries with a low GDP being less strict on trend than a country with a high GDP. 
 
@@ -192,7 +192,7 @@ I posed three questions before my wrangling journey that I hoped to be able to a
 - For other countries like Japan, interestingly, I saw almost the opposite trend, where medal count has peaks when GDP was at its lowest. It would be interesting to investigate further to see if we could get an insight to why this might be.
   + <img width="451" alt="image" src="https://github.com/erin-howard018/Olympic-dataset/assets/167825293/a4a63beb-eb7a-4d82-ac34-d6f53d42ffce">
 
-### Question 3: 3.	Does GDP have a different effect on medal count depending on the type of medal? 
+### Question 3: Does GDP have a different effect on medal count depending on the type of medal? 
 
 **Analysis**
 - For this question, I needed to use my complete final dataset as I wanted to preserve the type of each medal.
@@ -200,7 +200,7 @@ I posed three questions before my wrangling journey that I hoped to be able to a
 - I once again created a pivot table and a pivot chart that summarised the average GDP across the various types of medals. 
 
 **Share Results**
-<img width="397" alt="image" src="https://github.com/erin-howard018/Olympic-dataset/assets/167825293/8caab9ea-fa5a-47e1-aec1-2ea068b7a2ce">
+- <img width="397" alt="image" src="https://github.com/erin-howard018/Olympic-dataset/assets/167825293/8caab9ea-fa5a-47e1-aec1-2ea068b7a2ce">
 - I discovered that there is indeed a relationship between type of medal and average GDP, whereby a higher average GDP correlates to a higher ranked medal. This insight makes us see that not only does a country with a higher GDP have a better chance of winning a medal, but they have a better chance of winning a gold medal. 
 
 
