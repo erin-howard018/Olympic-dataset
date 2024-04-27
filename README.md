@@ -1,4 +1,4 @@
-# Combining Olympic and GDP data Project
+# Combining Olympic and GDP Data Project
 
 ![](https://a0.anyrgb.com/pngimg/1688/722/art-medals-medals-cartoon-medal-pretty-gold-medal-olympics-medal-medals-awards-olympic-medal-silver-medal-bronze-medal-prize.png)
 
