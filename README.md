@@ -70,8 +70,96 @@ Key observations about the dataset
 **Steps to get Olympic Dataset to analysis-ready format**
 - While there were around 31,000 rows in the summer Olympic dataset and around 6,000 in the winter, for completeness, I combined both the Summer and Winter Olympic datasets into one.  This was simple as both datasets had the same variables in the same order so I could copy paste the datasets into one Excel file. 
 - I also created a new variable called season to preserve if data was from summer or winter Olympic dataset. This left me with a combined dataset available [here](data/working/combined_olympicdataset.xlsm) that has 10 variables and 36,935 rows.
+- <img width="412" alt="image" src="https://github.com/erin-howard018/Olympic-dataset/assets/167825293/c33de72a-9a50-4b95-9f61-46429815f59e">
+
 
 **Steps to get GDP Dataset to analysis-ready format**
 - In order to inspect the data, I loaded the JSON dataset into MongoDB. This initially provided a challenge as the data was stored in an array, so I had to decode it using a -jsonArray argument when using MongoImport.
-- 
+- <img width="350" alt="image" src="https://github.com/erin-howard018/Olympic-dataset/assets/167825293/0502277e-001f-4a9f-a4c6-e5c441f336b2">
+
+- My next step was to import the JSON file into Excel using the 'Get Data from JSON' function on Excel.
+-<img width="381" alt="image" src="https://github.com/erin-howard018/Olympic-dataset/assets/167825293/0c2cbaa8-cde3-4bee-b048-3e959cbd433f">
+
+
+**Combining the datasets; creating unique country/year pairings**
+- The common attribute between the two datasets is that they both have countries and years. However, each dataset often has more than one observation per country, and more than one per year.
+- Obviously if I were to combine dataset on either just country or year, I would get multiple results for each value. My solution to this was to create a new variable named Country+YearCombination for each country code and year pairing in both the GDP and Medal datasets.
+- My initial thinking while observing the datasets was true in that each country code/year pairing appeared just once in the GDP dataset, while many appeared multiple times in the Medal dataset.
+- This made it clear to me it would be easiest to try assign a GDP value to each row in the medal dataset rather as there would be only one match, rather than the other way around. 
+
+-In a new column in the Medal dataset, I decided to use the VLOOKUP function to lookup a country/year pair in the GDP dataset and return the corresponding GDP value.
+
+**Combining the datasets; ensuring country codes are the same**
+
+ISSUE: While I had predicted some N/A values where country/year pairings don’t exist in the GDP dataset, this VLOOKUP method gave me 20,197 N/A’s and only 16,738 matches. Scanning through the N’A values, I saw rows that I believed should have a match. For example, Germany, which definitely appears in both dataset had no matches.
+- Investigating why lead me to see that Germany has different country codes in each of the datasets and therefore VLOOKUP couldn’t identify them as a match.
+ 
+SOLUTION: In order to minimise the number of N/A’s in the VLOOKUP process, I realised I need to ensure that the country codes for each country are the same. 
+- To compare the country codes between the datasets, in a new sheet I used the UNIQUE function to see the unique country codes for each dataset.
+- Because GDP dataset has a country name column, it was easy to see what country each code corresponded to.
+- The Medal dataset on the other hand, had no country name column so I needed a way to figure out what country each code corresponded to. I used a combination of VLOOKUP from the Dictionary dataset that came with the download and also the manual process of looking up countries of athletes for those that still isn’t have a match.
+  + For example; the code ANZ had no match. One of these rows corresponds to athlete named Frank E BEAUREPAIRE who competed for Australasia (no longer a competing country in the Olympics). I was now able to manually fill in now that the ANZ code corresponded to Australasia.
+- Now that I had a list of country codes and their corresponding country name for each dataset, I need to ensure they are the same for both datasets.
++ I decided to compare them by using VLOOKUP to match the country codes present in Medal Dataset to those in the GDP dataset.
++ I introduced conditional formatting to compare and then highlight codes that didn’t match between the two datasets.
++ <img width="402" alt="image" src="https://github.com/erin-howard018/Olympic-dataset/assets/167825293/837dc9ce-8055-49d3-9a84-759ab89b0b21">
++I decided I would change the country codes in the GDP dataset to match the syntax of the Medal dataset. 
++ I used find and replace to change all appearances of a specific code at once.
+
+**Combining the datasets; VLOOKUP second attempt**
+
+- After reconciling the country codes, I attempted my VLOOKUP of GDP value again.
+-<img width="461" alt="image" src="https://github.com/erin-howard018/Olympic-dataset/assets/167825293/d7b3b0b0-4290-48c5-8bc2-a2234bbfdd68">
+- I saw a bit of an improvement 19,704 matches and 17,231 N/As, but I still saw rows that I thought should have a match. ![image](https://github.com/erin-howard018/Olympic-dataset/assets/167825293/f6e922ff-785f-4050-b2ca-c4085dfe71c7)
+
+
+**Combining the datasets; Investigating the NA’s**
+- To investigate if this is the best I could do, I was going to start by filtering out the country codes that we didn’t have a match for (the N/A’s) in the country code matching process. I was under the impression that these were valid N/A values, thinking that these countries weren’t present in the GDP dataset but I realised my mistake.
+- ISSUE: As I had matched country codes by using VLOOKUP based off the names of the countries, I had failed to consider the possibility that country names could be different in the two datasets.
+      + For example, my process had failed to match ‘Bahamas’ in the Medal dataset to ‘Bahamas, The’ in the GDP dataset as I had used exact matching only.
+- SOLUTION: My solution was re-do the VLOOK process but using approximate match.
+- This solved some of the N/A values in the VLOOKUP when combining the two datasets, an improvement to 19,855 matches and 17,080 N/A.
+
+
+**Combining the datasets; Filtering out valid N/A’s + investigating the other N/A’s**
+- I am now fairly confident that I have sorted all the issues with matching country codes.
+- My next step was to filter out all the valid N/A’s from the combined dataset so I can see what N/A’s I have left.
+- Valid N/A’s would be
+      + Data for years before 1960 as this is the earliest year in the GDP dataset
+      + Data for countries that weren’t present in the GDP dataset. These were N/A’s in the country code matching table (AHO, ANZ, BOH, BWI, EUA, EUN, FRG, GDR, IOP, PRK, RU1, RUS, TCH, TPE, URS, YUG, ZZX)
+- By then filtering to only seeing the remaining N/A’s in the combined datasets, allowed me to see N/A’s that may be invalid from errors in my matching process or maybe they could just be missing GDP values for that country in that year.
+- While we have 1,354 of these “invalid” N/A values, many are repeated so I used the unique function to see what unique country/year pairings were giving N/A values.
+      + I was left 55 unique “invalid” country/year pairings. I decided I wanted to investigate these for completeness and to ensure I have captured as much data as possible in my combined dataset.
+      + <img width="426" alt="image" src="https://github.com/erin-howard018/Olympic-dataset/assets/167825293/db660077-8b57-42cd-a9ba-694b41744467">
+      + As suspected, most were due to not having GDP data for these years, and additionally for the Athlete for a medal being pending so not having a country.
+
+**Final Storage Format**
+- Now know all my genuine valid N/A values (17,049 of them), I can see that I was able to pair every row in the medal dataset that had a match in the GDP dataset.
+- I have valid 19,886 valid rows, and therefore there are 19,886 in my combined dataset.
+- My final dataset looks like; ![image](https://github.com/erin-howard018/Olympic-dataset/assets/167825293/8d362e2a-4f46-4e21-8eff-608afd233787)
+- <img width="417" alt="image" src="https://github.com/erin-howard018/Olympic-dataset/assets/167825293/ab9877f3-4c24-4d1c-8282-e259dedae93e">
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
