@@ -25,6 +25,7 @@ The following report details my wrangling journey, including successes and failu
 
 **Tools** 
 - Excel
+- MongoDB
 
 
 ## Stage 1: Ask
@@ -46,7 +47,20 @@ There are three main questions that I wanted to be able to answer
 - We may have some concerns about this data in regards to ROCCC. I have faith that the data is reliable due to lack of missing values, as well as the data being collected by the official Olympic Study Centre, although it is not original as I have sourced it through a secondary source Kaggle. Although the data is comprehensive, it is not the most current only tracking up to 2014 but since the data is historical as well we will continue with this analysis to get an understanding of the relationship over time. 
 - Limitations of the data are that data is seperated across three differerent .csv files, and the olympic data doesn't have country names, only country codes that correspond to the seperate .csv country code data dictionary.  
 
+Key observations about the dataset
+- While there were around 31,000 rows in the summer Olympic dataset and around 6,000 in the winter, for completeness, I combined both the Summer and Winter Olympic datasets into one.  This was simple as both datasets had the same variables in the same order so I could copy paste the datasets into one Excel file. 
+- I also created a new variable called season to preserve if data was from summer or winter Olympic dataset. This left me with a combined dataset that has 10 variables and 36,935 rows.
+- there are no country names which might make it hard to understand Country codes.
+- There is also the fact that there may be missing or repeated country/year pairings depending on the number of medals won for that country and that year.
 
 
+
+
+
+**Second Dataset - Country, Regional and World GDP**
+- Data sources; A publically available dataset downloaded from Kaggle - link to data in my repository available [here]() or available on Kaggle [here](https://www.kaggle.com/datasets/the-guardian/olympic-games). Data was provided by the IOC Research and Reference Service and published by The Guardian's Datablog and is available to use under a [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).
+- Organisation and description of files; Three .csv files; data for the Summer Olympics, data for the Winter Olympics and a country code data dictionary. The datasets describe all the medals won at the Olympics from 1896 to 2014, including medal type, sport, country, athlete etc. 
+- We may have some concerns about this data in regards to ROCCC. I have faith that the data is reliable due to lack of missing values, as well as the data being collected by the official Olympic Study Centre, although it is not original as I have sourced it through a secondary source Kaggle. Although the data is comprehensive, it is not the most current only tracking up to 2014 but since the data is historical as well we will continue with this analysis to get an understanding of the relationship over time. 
+- Limitations of the data are that data is seperated across three differerent .csv files, and the olympic data doesn't have country names, only country codes that correspond to the seperate .csv country code data dictionary.  
 
 
