@@ -67,7 +67,7 @@ There are three main questions that I wanted to be able to answer
 
 
 ## Stage 3: Process
-All of the working detailed in the section is available in [this](data/working/Wrangling Workbook 2.xlsx) Excel file
+All of the working detailed in the section is available in [this](data/working/Wrangling_Workbook.xlsx) Excel file
 
 ### Steps to get Olympic Dataset to analysis-ready format
 - While there were around 31,000 rows in the summer Olympic dataset and around 6,000 in the winter, for completeness, I combined both the Summer and Winter Olympic datasets into one.  This was simple as both datasets had the same variables in the same order so I could copy paste the datasets into one Excel file. 
