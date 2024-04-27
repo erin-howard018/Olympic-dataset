@@ -9,7 +9,7 @@
 - [Stage 1: Ask](#Stage-1-Ask)
 - [Stage 2: Prepare](#Stage-2-Prepare)
 - [Stage 3: Process](#Stage-3-Process)
-- [Stage 4/5: Analyse and Share](#Stage-4-Analyse-and-Share)
+- [Stage 4/5: Analyse and Share](#Stage4/5-Analyse-and-Share)
 
 
 ## Introduction 
